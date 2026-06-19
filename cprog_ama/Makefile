@@ -1,9 +1,12 @@
 .SILENT:
 CURR := ch22
+WORKDIR := $(CURDIR)/$(CURR)
 
 run: build
-	@echo "Running ${pwd}/cprog_ama/$(CURR)/main..." && ${pwd}/cprog_ama/$(CURR)/main /cprog_ama/ch22/testCanOpen.dat
+	@echo "Running $(WORKDIR)/main..." && $(WORKDIR)/main
 
-build:
-	@gcc -Wall -Wextra -std=c11 -o ${pwd}/cprog_ama/$(CURR)/main ${pwd}/cprog_ama/$(CURR)/main.c \
-	${pwd}/cprog_ama/$(CURR)/canopen.c
+build: clean
+	@gcc -Wall -Wextra -std=c11 -o $(WORKDIR)/main $(WORKDIR)/main1.c
+
+clean:
+	@rm -rf $(WORKDIR)/main
